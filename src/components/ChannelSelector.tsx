@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useCallback } from "react";
-import { CHANNELS } from "../enum/channels";
+import { CHANNELS } from "../constants/channels";
 
 const StyledListItem = styled.li((props: { active: boolean; }) => ({
     padding: `1rem`,
@@ -26,7 +26,7 @@ export default function ChannelSelector({ onChannelChanged, selectedChannel }: I
     return (
         <ul>
             {CHANNELS.map(channel => (
-                <StyledListItem active={selectedChannel === channel} onClick={() => handleClickChannel(channel)}>{channel}</StyledListItem>
+                <StyledListItem key={channel} active={selectedChannel === channel} onClick={() => handleClickChannel(channel)}>{channel}</StyledListItem>
             ))}
         </ul>
     )

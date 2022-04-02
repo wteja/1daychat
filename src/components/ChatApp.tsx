@@ -1,8 +1,10 @@
 import Head from 'next/head';
+import { useCallback, useEffect } from 'react';
 import useChatApp from '../hooks/useChatApp';
 import AppContainer from './AppContainer';
 import AppLayout from './AppLayout';
 import AppTitle from './AppTitle';
+import ChatPanel from './ChatPanel';
 import Sidebar from './Sidebar';
 
 function ChatApp() {
@@ -11,7 +13,6 @@ function ChatApp() {
         channel,
         handleUsernameChanged,
         handleChannelChanged,
-        postMessage,
     } = useChatApp();
 
     return (
@@ -28,6 +29,7 @@ function ChatApp() {
                     onUsernameChanged={handleUsernameChanged}
                     onChannelChanged={handleChannelChanged}
                 />
+                <ChatPanel channel={channel} username={username} />
             </AppLayout>
         </AppContainer>
     )

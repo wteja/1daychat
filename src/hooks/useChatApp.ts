@@ -1,10 +1,13 @@
+import { useQuery } from "@apollo/client";
 import { useCallback, useState } from "react";
-import { CHANNELS } from "../enum/channels";
-import { USERNAMES } from "../enum/usernames";
+import { CHANNELS } from "../constants/channels";
+import { USERNAMES } from "../constants/usernames";
+import { GET_LATEST_MESSAGES } from "../graphql/queries";
+import { Message } from "../models/message";
 
 export default function useChatApp() {
     const [username, setUsername] = useState(USERNAMES[0]);
-    const [channel, setChannel] = useState(CHANNELS[0])
+    const [channel, setChannel] = useState(CHANNELS[0]);
 
     const handleUsernameChanged = useCallback((username: string) => {
         setUsername(username);
@@ -14,25 +17,10 @@ export default function useChatApp() {
         setChannel(channel);
     }, []);
 
-    const postMessage = useCallback((message: string) => {
-        console.log(`Username: ${username}`);
-        console.log(`Channel: ${channel}`);
-        console.log(`Message: ${message}`);
-    }, []);
-
-    const fetchLatestMessages = useCallback(() => {
-        return [];
-    }, []);
-
-    const fetchMoreMessages = useCallback((channelId: string, messageId) => {
-        return [];
-    }, []);
-
     return {
         username,
         channel,
         handleUsernameChanged,
         handleChannelChanged,
-        postMessage,
     }
 }

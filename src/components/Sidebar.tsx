@@ -3,8 +3,9 @@ import ChannelSelector from "./ChannelSelector";
 import UsernameSelector from "./UsernameSelector";
 
 const StyledSidebar = styled.aside`
-    padding: 1rem;
+    padding: 0 1rem 1rem;
     width: 28%;
+    overflow-y: scroll;
 `
 
 const SelectorTopic = styled.div`

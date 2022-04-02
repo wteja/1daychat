@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
 import { ChangeEvent, useCallback } from "react";
-import { USERNAMES } from "../enum/usernames";
+import { USERNAMES } from "../constants/usernames";
 
 const StyledUsernameSelector = styled.div`
     margin-bottom: 2rem;
 `
 
 const StyledSelect = styled.select`
-    padding: 0.5rem;
+    padding: 0.85rem;
     width: 100%;
     font-size: 1rem;
     outline: 'none';
@@ -27,9 +27,9 @@ export default function UsernameSelector({ selectedUsername, onUsernameChanged }
 
     return (
         <StyledUsernameSelector>
-            <StyledSelect onChange={handleUsernameChange}>
+            <StyledSelect onChange={handleUsernameChange} defaultValue={selectedUsername}>
                 {USERNAMES.map(username => (
-                    <option key={username} value={username} selected={selectedUsername === username}>{username}</option>
+                    <option key={username} value={username}>{username}</option>
                 ))}
             </StyledSelect>
         </StyledUsernameSelector>
