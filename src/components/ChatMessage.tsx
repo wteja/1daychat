@@ -6,7 +6,6 @@ import { getTime } from '../utils/date';
 
 const ChatMessageContainer = styled.div((props: { me: boolean }) => ({
     display: 'flex',
-    alignSelf: props.me ? 'end' : 'start',
     flexDirection: props.me ? 'row-reverse' : 'row',
     alignItems: 'center',
     gap: '0.5rem',
