@@ -174,7 +174,7 @@ export default function ChatPanel({ channel, username }: IChatPanelProps) {
         <ChatContainer>
             <ChatMessagesContainer>
                 {messages.map(msg => (
-                    <ChatMessage me={msg.userId === username}>
+                    <ChatMessage key={msg.messageId} me={msg.userId === username}>
                         <Avartar src={`assets/${msg.userId}.png`} />
                         <ChatBox me={msg.userId === username}>{msg.text}</ChatBox>
                         <ChatTime>{getTime(msg.datetime)}</ChatTime>
