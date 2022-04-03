@@ -6,6 +6,7 @@ import ChatInput from "./ChatInput"
 import ChatMessage from "./ChatMessage"
 import ArrowUp from '../icons/ArrowUp'
 import ArrowDown from '../icons/ArrowDown'
+import { css } from "@emotion/react"
 
 const ChatContainer = styled.div`
     flex: 1 1 auto;
@@ -39,6 +40,13 @@ const ReadMoreButton = styled.button`
     display: flex;
     align-items: center;
     gap: 0.25rem;
+`
+
+const NoMessageText = styled.div`
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 type ChatPanelProps = {
@@ -107,7 +115,13 @@ export default function ChatPanel({ channel, username }: ChatPanelProps) {
                 </ReadMoreButton>
             </div>
             <ChatMessagesContainer>
-                {messages.map(msg => <ChatMessage key={msg.messageId} currentUserId={username} msg={msg} />)}
+                {messages.length > 0 ? (
+                    <>
+                        {messages.map(msg => <ChatMessage key={msg.messageId} currentUserId={username} msg={msg} />)}
+                    </>
+                ) : (
+                    <NoMessageText>There is no any messages here, let start the discussion!</NoMessageText>
+                )}
             </ChatMessagesContainer>
             <div>
                 <ReadMoreButton onClick={() => fetchMoreMessages(false)}>
