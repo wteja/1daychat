@@ -3,6 +3,8 @@ import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react"
 import { chatApi } from "../api/chat-api"
 import { Message, SendStatusEnum } from "../models/message"
 import { getTime } from "../utils/date"
+import Check from "../icons/Check";
+import Cross from "../icons/Check";
 
 const ChatContainer = styled.div`
     flex: 1 1 auto;
@@ -66,7 +68,14 @@ const ChatBox = styled.div((props: { me: boolean; }) => {
 })
 
 const ChatTime = styled.div`
-    font-size: 0.5rem;
+    font-size: 0.75rem;
+`
+
+const ChatSendStatus = styled.div`
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    gap: 0.25rem;
 `
 
 const ChatInputContainer = styled.div`
@@ -101,7 +110,6 @@ type IChatPanelProps = {
 export default function ChatPanel({ channel, username }: IChatPanelProps) {
     const formRef = useRef<HTMLFormElement>(null);
     const inputRef = useRef<HTMLTextAreaElement>(null);
-    const [isLoading, setIsLoading] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
 
     function captureMessage() {
@@ -178,13 +186,18 @@ export default function ChatPanel({ channel, username }: IChatPanelProps) {
                         <Avartar src={`assets/${msg.userId}.png`} />
                         <ChatBox me={msg.userId === username}>{msg.text}</ChatBox>
                         <ChatTime>{getTime(msg.datetime)}</ChatTime>
+                        {msg.sendStatus && msg.sendStatus !== SendStatusEnum.SENDING && (
+                        <ChatSendStatus>
+                            {msg.sendStatus === SendStatusEnum.SENT ? <Check /> : <Cross />}
+                            <span>{msg.sendStatus}</span>
+                        </ChatSendStatus>)}
                     </ChatMessage>
                 ))}
             </ChatMessagesContainer>
             <ChatInputContainer>
                 <form onSubmit={handleOnSubmit} ref={formRef}>
-                    <ChatInput ref={inputRef} onKeyDown={handleKeyDown} disabled={isLoading} />
-                    <PostButton type="submit" disabled={isLoading}>Post Message</PostButton>
+                    <ChatInput ref={inputRef} onKeyDown={handleKeyDown} />
+                    <PostButton type="submit">Post Message</PostButton>
                     <InputNote>Press Shift + Enter for quickly post message</InputNote>
                 </form>
             </ChatInputContainer>
