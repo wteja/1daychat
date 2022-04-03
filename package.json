@@ -13,8 +13,6 @@
     "@apollo/client": "^3.5.10",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
-    "@testing-library/jest-dom": "^5.16.3",
-    "@testing-library/react": "^13.0.0",
     "axios": "^0.26.1",
     "date-fns": "^2.28.0",
     "graphql": "^16.3.0",
@@ -23,6 +21,8 @@
     "react-dom": "18.0.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/react": "^13.0.0",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.23",
     "@types/react": "17.0.43",

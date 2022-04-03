@@ -2,16 +2,16 @@ import styled from "@emotion/styled";
 import { useCallback } from "react";
 import { CHANNELS } from "../constants/channels";
 
-const StyledListItem = styled.li((props: { active: boolean; }) => ({
-    padding: `1rem`,
-    backgroundColor: props.active ? 'white' : 'transparent',
-    cursor: 'pointer',
-    borderRadius: '0.25rem',
-    borderWidth: '1px ',
-    borderStyle: 'solid',
-    borderColor: props.active ? 'black' : 'transparent',
-    marginTop: '0.5rem',
-}))
+const StyledListItem = styled.li<{ active: boolean; }>`
+    padding: 1rem;
+    background-color: ${props => props.active ? 'white' : 'transparent'};
+    cursor: pointer;
+    border-radius: 0.25rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: ${props => props.active ? 'black' : 'transparent'};
+    margin-top: 0.5rem;
+`
 
 type ChannelSelectorProps = {
     selectedChannel: string;
