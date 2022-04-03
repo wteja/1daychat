@@ -4,7 +4,7 @@ export default styled.div`
     margin: 1.25rem 0 0;
     display: flex;
     flex-direction: column;
-    height: 90vh;
+    height: 94vh;
 
     @media screen and (min-width: 992px) {
         width: 60rem;

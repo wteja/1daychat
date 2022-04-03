@@ -15,7 +15,7 @@ export const chatApi = {
         return result.data.MessagesFetchLatest;
     },
 
-    async getMoreMessages(channelId: string, messageId: string, old: boolean) {
+    async fetchMoreMessages(channelId: string, messageId: string, old: boolean) {
         const result = await apiClient.query<{ MessagesFetchMore: Message[]; }>({
             query: GET_MORE_MESSAGES,
             variables: {
