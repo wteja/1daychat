@@ -21,7 +21,6 @@ const ChatMessagesContainer = styled.div`
     display: flex;
     flex-direction: column-reverse;
     width: 100%;
-    padding-bottom: 1rem;
     padding-right: 1rem;
 `
 

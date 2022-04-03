@@ -1,7 +1,7 @@
 import { Message, SendStatusEnum } from "../models/message";
 import styled from '@emotion/styled';
 import Check from "../icons/Check";
-import Cross from "../icons/Check";
+import Cross from "../icons/Cross";
 import { getTime } from '../utils/date';
 
 const ChatMessageContainer = styled.div((props: { me: boolean }) => ({
