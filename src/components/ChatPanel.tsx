@@ -1,12 +1,11 @@
 import styled from "@emotion/styled"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { chatApi } from "../api/chat-api"
 import { Message, SendStatusEnum } from "../models/message"
 import ChatInput from "./ChatInput"
 import ChatMessage from "./ChatMessage"
 import ArrowUp from '../icons/ArrowUp'
 import ArrowDown from '../icons/ArrowDown'
-import { css } from "@emotion/react"
 
 const ChatContainer = styled.div`
     flex: 1 1 auto;
@@ -104,7 +103,7 @@ export default function ChatPanel({ channel, username }: ChatPanelProps) {
         if (!!channel && !!username) {
             reloadMessages();
         }
-    }, [channel, username])
+    }, [channel, username]);
 
     return (
         <ChatContainer>
