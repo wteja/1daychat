@@ -4,8 +4,13 @@ import UsernameSelector from "./UsernameSelector";
 
 const StyledSidebar = styled.aside`
     padding: 0 1rem 1rem;
-    width: 28%;
+    width: 100%;
     overflow-y: scroll;
+    box-sizing: border-box;
+
+    @media screen and (min-width: 992px) {
+        width: 28%;
+    }
 `
 
 const SelectorTopic = styled.div`

@@ -15,13 +15,17 @@ const ChatContainer = styled.div`
 `
 
 const ChatMessagesContainer = styled.div`
-    height: 0;
+    height: 300px;
     flex: 1 1 auto;
     overflow-y: scroll;
     display: flex;
     flex-direction: column-reverse;
     width: 100%;
     padding-right: 1rem;
+
+    @media screen and (min-width: 992px) {
+        height: 0;
+    }
 `
 
 const ReadMoreButton = styled.button`
@@ -44,7 +48,6 @@ type ChatPanelProps = {
 
 export default function ChatPanel({ channel, username }: ChatPanelProps) {
     const [messages, setMessages] = useState<Message[]>([]);
-    const messagesListRef = useRef<HTMLDivElement>(null);
 
     async function reloadMessages() {
         const messages = await chatApi.fetchLatestMessages(channel);
@@ -103,7 +106,7 @@ export default function ChatPanel({ channel, username }: ChatPanelProps) {
                     <ArrowUp />
                 </ReadMoreButton>
             </div>
-            <ChatMessagesContainer ref={messagesListRef}>
+            <ChatMessagesContainer>
                 {messages.map(msg => <ChatMessage key={msg.messageId} currentUserId={username} msg={msg} />)}
             </ChatMessagesContainer>
             <div>

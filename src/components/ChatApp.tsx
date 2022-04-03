@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useCallback, useEffect } from 'react';
 import useChatApp from '../hooks/useChatApp';
 import AppContainer from './AppContainer';
 import AppLayout from './AppLayout';
