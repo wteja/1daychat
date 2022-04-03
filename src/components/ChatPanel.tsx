@@ -23,12 +23,12 @@ const ChatMessagesContainer = styled.div`
     padding-right: 1rem;
 `
 
-type IChatPanelProps = {
+type ChatPanelProps = {
     channel: string;
     username: string;
 }
 
-export default function ChatPanel({ channel, username }: IChatPanelProps) {
+export default function ChatPanel({ channel, username }: ChatPanelProps) {
     const [messages, setMessages] = useState<Message[]>([]);
 
     async function reloadMessages() {

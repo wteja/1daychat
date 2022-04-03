@@ -58,12 +58,12 @@ const ChatSendStatus = styled.div`
     gap: 0.25rem;
 `
 
-type IChatMessageProps = {
+type ChatMessageProps = {
     msg: Message;
     currentUserId: string;
 }
 
-function ChatMessage({ msg, currentUserId }: IChatMessageProps) {
+function ChatMessage({ msg, currentUserId }: ChatMessageProps) {
     return (
         <ChatMessageContainer me={msg.userId === currentUserId}>
             <Avartar src={`assets/${msg.userId}.png`} />

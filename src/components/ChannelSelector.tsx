@@ -13,12 +13,12 @@ const StyledListItem = styled.li((props: { active: boolean; }) => ({
     marginTop: '0.5rem',
 }))
 
-interface IChannelSelectorProps {
+type ChannelSelectorProps = {
     selectedChannel: string;
     onChannelChanged: (channel: string) => void;
 }
 
-export default function ChannelSelector({ onChannelChanged, selectedChannel }: IChannelSelectorProps) {
+export default function ChannelSelector({ onChannelChanged, selectedChannel }: ChannelSelectorProps) {
     const handleClickChannel = useCallback((channel: string) => {
         onChannelChanged(channel);
     }, []);

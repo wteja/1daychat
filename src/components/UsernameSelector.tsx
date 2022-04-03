@@ -14,12 +14,12 @@ const StyledSelect = styled.select`
     border-radius: 0.25rem;
 `
 
-interface IUsernameSelectorProps {
+type UsernameSelectorProps = {
     selectedUsername: string;
     onUsernameChanged: (username: string) => void;
 }
 
-export default function UsernameSelector({ selectedUsername, onUsernameChanged }: IUsernameSelectorProps) {
+export default function UsernameSelector({ selectedUsername, onUsernameChanged }: UsernameSelectorProps) {
     const handleUsernameChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
         const username = e.target.value;
         onUsernameChanged(username);
