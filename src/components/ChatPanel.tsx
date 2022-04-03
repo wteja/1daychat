@@ -2,6 +2,7 @@ import styled from "@emotion/styled"
 import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react"
 import { chatApi } from "../api/chat-api"
 import { Message, SendStatusEnum } from "../models/message"
+import { getTime } from "../utils/date"
 
 const ChatContainer = styled.div`
     flex: 1 1 auto;
@@ -11,13 +12,61 @@ const ChatContainer = styled.div`
 `
 
 const ChatMessagesContainer = styled.div`
-    width: 100%;
+    height: 0;
     flex: 1 1 auto;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
 `
 
-const ChatMessageBox = styled.div`
-    display: flex;
+const ChatMessage = styled.div((props: { me: boolean }) => ({
+    display: 'flex',
+    alignSelf: props.me ? 'end' : 'start',
+    flexDirection: props.me ? 'row-reverse' : 'row',
+    alignItems: 'center',
+    gap: '0.5rem',
+    marginBottom: '1rem',
+}))
+
+const Avartar = styled.img`
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+`
+
+const ChatBox = styled.div((props: { me: boolean; }) => {
+    const direction = props.me ? 'right' : 'left';
+    const inverseDirection = props.me ? 'left' : 'right';
+
+    return `
+    background: white;
+    padding: 1rem;
+    position: relative;
+    margin-${direction}: 0.75rem;
+    border-radius: 0.25rem;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        ${direction}: -1rem;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-${inverseDirection}-color: white;
+        border-style: solid;
+        border-width: 0.5rem;
+    }
+`
+})
+
+const ChatTime = styled.div`
+    font-size: 0.5rem;
 `
 
 const ChatInputContainer = styled.div`
@@ -35,7 +84,7 @@ const ChatInput = styled.textarea`
 `
 
 const PostButton = styled.button`
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     margin-top: 0.5rem;
 `
 
@@ -90,7 +139,7 @@ export default function ChatPanel({ channel, username }: IChatPanelProps) {
             messageId: "",
             userId: username,
             text,
-            datetime: new Date(),
+            datetime: new Date().toJSON(),
             sendStatus: SendStatusEnum.SENDING,
         }
         const newMessageArray = [pendingMessage, ...messages];
@@ -125,7 +174,11 @@ export default function ChatPanel({ channel, username }: IChatPanelProps) {
         <ChatContainer>
             <ChatMessagesContainer>
                 {messages.map(msg => (
-                    <ChatMessageBox>{msg.text}</ChatMessageBox>
+                    <ChatMessage me={msg.userId === username}>
+                        <Avartar src={`assets/${msg.userId}.png`} />
+                        <ChatBox me={msg.userId === username}>{msg.text}</ChatBox>
+                        <ChatTime>{getTime(msg.datetime)}</ChatTime>
+                    </ChatMessage>
                 ))}
             </ChatMessagesContainer>
             <ChatInputContainer>
